@@ -7,6 +7,13 @@ services:
       - ./log/nginx:/var/log/nginx
     ports:
       - 80:80
+  fluent-ui:
+    build: ./fluent-ui
+    volumes: 
+      - ./log/nginx:/var/log/nginx
+      - ./fluentd/:/fluentd/etc/
+    ports:
+      - 9292:9292
   fluentd:
     image: fluentd:latest
     volumes: 

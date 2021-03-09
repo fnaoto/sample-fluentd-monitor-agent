@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:alpine
+    volumes: 
+      - ./log/nginx:/var/log/nginx
+    ports:
+      - 80:80
+  fluentd:
+    image: fluentd:latest
+    volumes: 
+      - ./log/nginx:/var/log/nginx
+      - ./fluentd/:/fluentd/etc/
+    ports:
+      - 24220:24220
+  newrelic:
+    image: newrelic/nri-ecs:0.1.0-beta-fargate
+    env_file: .env
+    volumes:
+      - ./newrelic/:/etc/newrelic-infra/integrations.d/

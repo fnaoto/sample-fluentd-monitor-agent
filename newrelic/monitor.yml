@@ -1,0 +1,7 @@
+integrations:
+  - name: nri-flex
+    config:
+      name: fluentd
+      apis:
+        - event_type: fluentd
+          url: http://fluentd:24220/api/plugins.json
